@@ -1,0 +1,5 @@
+<category name="Pokemon API" colour="#FF0000" css-icon="customIcon fad fa-dragon">
+    <block type="import_pokeapi"></block>
+    <block type="get_pokemon_stats"></block>
+    <block type="show_pokemon_stats"></block>
+</category>
