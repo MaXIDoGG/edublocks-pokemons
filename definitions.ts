@@ -1,36 +1,52 @@
 const pokeColor = "#FF0000";
 
-Blockly.Blocks['import_pokeapi'] = {
+Blockly.Blocks['import_pokemons'] = {
 	init: function () {
 		this.appendDummyInput()
-			.appendField("Import PokeAPI tools");
+			.appendField("from pokemons import Pokemon");
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(pokeColor);
-		this.setTooltip("Imports necessary libraries for PokeAPI");
 	}
 };
 
-Blockly.Blocks['get_pokemon_stats'] = {
+Blockly.Blocks['pokemon_init'] = {
 	init: function () {
 		this.appendDummyInput()
-			.appendField("Get Pokemon")
-			.appendField(new Blockly.FieldTextInput("pikachu"), "pokemon_name")
-			.appendField("stats");
+			.appendField(new Blockly.FieldVariable("pokemon"), "pokemon")
+			.appendField(" = Pokemon()");
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(pokeColor);
-		this.setTooltip("Fetches basic stats for specified Pokemon");
 	}
 };
 
-Blockly.Blocks['show_pokemon_stats'] = {
+Blockly.Blocks['pokemon_get_stats'] = {
 	init: function () {
 		this.appendDummyInput()
-			.appendField("Show Pokemon stats");
+			.appendField(new Blockly.FieldVariable("pikachu"), "poke_name")
+			.appendField(" = ")
+			.appendField(new Blockly.FieldVariable("pokemon"), "pokemon")
+			.appendField(".get_stats(");
+		this.appendValueInput("parameters")
+			.setCheck(null);
+		this.appendDummyInput()
+			.appendField(")");
+		this.setInputsInline(true);
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour(pokeColor);
-		this.setTooltip("Prints Pokemon stats to console");
 	}
 };
+
+Blockly.Blocks['pokemon_get_property'] = {
+	init: function () {
+		this.appendDummyInput()
+			.appendField(new Blockly.FieldVariable("pikachu"), "poke_name")
+			.appendField(".")
+			.appendField(new Blockly.FieldDropdown([["hp", "hp"], ["defense", "defense"], ["attack", "attack"], ["speed", "speed"]]), "property");
+		this.setInputsInline(true);
+		this.setOutput(true, null);
+		this.setColour(pokeColor);
+	}
+};  

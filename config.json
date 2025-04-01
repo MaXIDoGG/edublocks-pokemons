@@ -1,5 +1,7 @@
 {
 	"mode": "python",
-	"interpreter": "py",
-	"code": []
+	"code": [
+		"pokemons.py"
+	],
+	"interpreter": "py"
 }

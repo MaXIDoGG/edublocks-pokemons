@@ -1,30 +1,25 @@
-Blockly.Python['import_pokeapi'] = function (block) {
-	return 'import requests\n' +
-		'import json\n\n' +
-		'class PokeAPI:\n' +
-		'    def __init__(self):\n' +
-		'        self.base_url = "https://pokeapi.co/api/v2/"\n' +
-		'        self.current_pokemon = None\n\n' +
-		'    def get_pokemon(self, name):\n' +
-		'        response = requests.get(f"{self.base_url}pokemon/{name.lower()}")\n' +
-		'        if response.status_code == 200:\n' +
-		'            self.current_pokemon = response.json()\n' +
-		'            return True\n' +
-		'        return False\n\n' +
-		'    def get_stats(self):\n' +
-		'        if not self.current_pokemon:\n' +
-		'            return None\n' +
-		'        stats = {}\n' +
-		'        for stat in self.current_pokemon["stats"]:\n' +
-		'            stats[stat["stat"]["name"]] = stat["base_stat"]\n' +
-		'        return stats\n\n' +
-		'poke_api = PokeAPI()\n';
+Blockly.Python['import_pokemons'] = function (block) {
+	var code = 'from pokemons import Pokemon\n';
+	return code;
 };
 
-Blockly.Python['get_pokemon_stats'] = function (block) {
-	const pokemonName = block.getFieldValue('pokemon_name');
-	return `poke_api.get_pokemon("${pokemonName}")\n`;
+Blockly.Python['pokemon_init'] = function (block) {
+	var pokemon = Blockly.Python.nameDB_.getName(block.getFieldValue('pokemon'), Blockly.VARIABLE_CATEGORY_NAME);
+	var code = `${pokemon} = Pokemon()\n`;
+	return code;
 };
 
-Blockly.Python['show_pokemon_stats'] = function (block) {
-	return 'stats = poke_api.get_stats()\n' +
+Blockly.Python['pokemon_get_stats'] = function (block) {
+	var poke_name = Blockly.Python.nameDB_.getName(block.getFieldValue('poke_name'), Blockly.VARIABLE_CATEGORY_NAME);
+	var pokemon = Blockly.Python.nameDB_.getName(block.getFieldValue('pokemon'), Blockly.VARIABLE_CATEGORY_NAME);
+	var parameters = Blockly.Python.valueToCode(block, 'parameters', 0);
+	var code = `${poke_name} = ${pokemon}.get_stats(${parameters})\n`;
+	return code;
+};
+
+Blockly.Python['pokemon_get_property'] = function (block) {
+	var poke_name = Blockly.Python.nameDB_.getName(block.getFieldValue('poke_name'), Blockly.VARIABLE_CATEGORY_NAME);
+	var property = block.getFieldValue('property');
+	var code = `${poke_name}.${property}`;
+	return [code, 0];
+};  
