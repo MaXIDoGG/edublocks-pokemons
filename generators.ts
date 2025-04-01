@@ -21,5 +21,5 @@ Blockly.Python['pokemon_get_property'] = function (block) {
 	var poke_name = Blockly.Python.nameDB_.getName(block.getFieldValue('poke_name'), Blockly.VARIABLE_CATEGORY_NAME);
 	var property = block.getFieldValue('property');
 	var code = `${poke_name}.${property}`;
-	return [code, 0];
+	return code;
 };  
