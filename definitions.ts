@@ -62,7 +62,12 @@ Blockly.Blocks['pokemon_set_property'] = {
 				["defense", "defense"],
 				["speed", "speed"]
 			]), "property")
-			.appendField(" = ");
+			.appendField(new Blockly.FieldDropdown([
+				["=", "="],
+				["+=", "+="],
+				["-=", "-="]
+			]), "operator");
+
 		this.appendValueInput("value")
 			.setCheck("Number")
 			.setAlign(Blockly.ALIGN_RIGHT);  // Выравнивание по правому краю

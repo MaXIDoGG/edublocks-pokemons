@@ -30,10 +30,20 @@ Blockly.Python['pokemon_set_property'] = function (block) {
 		Blockly.VARIABLE_CATEGORY_NAME
 	);
 	const property = block.getFieldValue('property');
+	const operator = block.getFieldValue('operator');
+
 	const value = Blockly.Python.valueToCode(
 		block,
 		'value',
 		Blockly.Python.ORDER_ATOMIC
-	);
-	return `${poke_name}.${property} = ${value}\n`;
+	) || "0";
+
+	switch (operator) {
+		case "+=":
+			return `${poke_name}.${property} += int(${value})\n`;
+		case "-=":
+			return `${poke_name}.${property} -= int(${value})\n`;
+		default: // case "="
+			return `${poke_name}.${property} = int(${value})\n`;
+	}
 };
