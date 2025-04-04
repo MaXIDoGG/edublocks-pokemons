@@ -22,4 +22,18 @@ Blockly.Python['pokemon_get_property'] = function (block) {
 	var property = block.getFieldValue('property');
 	var code = `${poke_name}.${property}`;
 	return [code, 0];
-};  
+};
+
+Blockly.Python['pokemon_set_property'] = function (block) {
+	const poke_name = Blockly.Python.nameDB_.getName(
+		block.getFieldValue('poke_name'),
+		Blockly.VARIABLE_CATEGORY_NAME
+	);
+	const property = block.getFieldValue('property');
+	const value = Blockly.Python.valueToCode(
+		block,
+		'value',
+		Blockly.Python.ORDER_ATOMIC
+	);
+	return `${poke_name}.${property} = ${value}\n`;
+};
