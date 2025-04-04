@@ -57,14 +57,17 @@ Blockly.Blocks['pokemon_set_property'] = {
 			.appendField(new Blockly.FieldVariable("pikachu"), "poke_name")
 			.appendField(".")
 			.appendField(new Blockly.FieldDropdown([
-				["HP", "hp"],
-				["Attack", "attack"],
-				["Defense", "defense"],
-				["Speed", "speed"]
+				["hp", "hp"],
+				["attack", "attack"],
+				["defense", "defense"],
+				["speed", "speed"]
 			]), "property")
 			.appendField(" = ");
 		this.appendValueInput("value")
-			.setCheck("Number");
+			.setCheck("Number")
+			.setAlign(Blockly.ALIGN_RIGHT);  // Выравнивание по правому краю
+
+		this.setInputsInline(true);  // Ключевая строка - делаем в одну линию
 		this.setPreviousStatement(true, null);
 		this.setNextStatement(true, null);
 		this.setColour('#FF0000');
