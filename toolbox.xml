@@ -18,11 +18,12 @@
         </value>
     </block>
 
-    <block type="pokemon_get_property"></block>
+    <block type="pokemon_get_property">
+    </block>
     <block type="pokemon_set_property">
         <value name="value">
-            <shadow type="math_number">
-                <field name="NUM">100</field>
+            <shadow type="inline_number">
+                <field name="value">100</field>
             </shadow>
         </value>
     </block>
