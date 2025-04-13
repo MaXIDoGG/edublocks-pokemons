@@ -1,5 +1,5 @@
 <category name="Pokemons" colour="#FF0000" css-icon="customIcon fad fa-dragon">
-    <label text="Weather"></label>
+    <label text="Pokemons"></label>
 
     <block type="import_pokemons"></block>
 
